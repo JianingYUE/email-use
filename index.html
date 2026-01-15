@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Email Usage Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2em;
+    }
+    #app, #recent, #usedEmails {
+      display: none;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 0.5em 0;
+    }
+    #usedPager {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+    }
+    button { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div id="login">
+    <h2>Enter Password</h2>
+    <input type="password" id="pwd" />
+    <button onclick="checkPassword()">Login</button>
+  </div>
+
+  <div id="app">
+    <h1>Email Usage Tracker</h1>
+
+    <p>📧 Email: <span id="emailDisplay"></span></p>
+    <p>⏱️ Last used: <span id="lastUsedDisplay"></span></p>
+    <button onclick="confirmUsage()">I used this email</button>
+
+    <hr />
+
+    <div id="recent">
+      <h3>Recently Used</h3>
+      <p>📧 <span id="recentEmail"></span></p>
+      <p>⏱️ Was last used: <span id="recentDays"></span> day(s) ago</p>
+    </div>
+
+    <button onclick="toggleUsedEmails()">Show/Hide Used Emails</button>
+
+    <div id="usedEmails" style="display:none;">
+      <h3>📋 Used Emails</h3>
+      <ul id="usedList"></ul>
+
+      <div id="usedPager">
+        <button id="usedPrevBtn" onclick="prevUsedPage()">Prev</button>
+        <span id="usedPageInfo">Page 1 / 1</span>
+        <button id="usedNextBtn" onclick="nextUsedPage()">Next</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
